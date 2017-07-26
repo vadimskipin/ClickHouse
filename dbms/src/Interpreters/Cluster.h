@@ -56,6 +56,7 @@ public:
         String default_database;    /// this database is selected when no database is specified for Distributed table
         UInt32 replica_num;
 
+        Address() = default;
         Address(Poco::Util::AbstractConfiguration & config, const String & config_prefix);
         Address(const String & host_port_, const String & user_, const String & password_);
 
@@ -63,6 +64,8 @@ public:
         String toString() const;
 
         static String toString(const String & host_name, UInt16 port);
+
+        static void fromString(const String & host_port_string, String & host_name, UInt16 & port);
 
         /// Retrurns escaped user:password@resolved_host_address:resolved_host_port#default_database
         String toStringFull() const;
